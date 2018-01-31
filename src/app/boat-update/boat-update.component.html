@@ -1,0 +1,42 @@
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">{{ title }}</h3>
+  </div>
+  <!-- /.box-header -->
+  <!-- form start -->
+  <div class="box-body">
+    <div class="form-group">
+      <label for="boat.name">Bootsname</label>
+      <input [(ngModel)]="boat.name" type="text" class="form-control" placeholder="Bootsname">
+    </div>
+    <div class="form-group">
+      <label>Bootstype</label>
+      <select [(ngModel)]="boat.boatType" class="form-control">
+        <option *ngFor="let boatTypeKey of boatTypesKeys" [(value)]="boatTypes[boatTypeKey]">{{ boatTypes[boatTypeKey] }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Bootsplätze</label>
+      <select [(ngModel)]="boat.boatSlots" class="form-control">
+        <option *ngFor="let boatSlotsKey of boatSlotsKeys" [(value)]="boatSlots[boatSlotsKey]">{{ boatSlots[boatSlotsKey] }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Steuermann</label>
+      <select [(ngModel)]="boat.boatCox" class="form-control">
+        <option *ngFor="let boatCoxKey of boatCoxKeys" [(value)]="boatCox[boatCoxKey]">{{ boatCox[boatCoxKey] }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Riggerung</label>
+      <select [(ngModel)]="boat.boatRigger" class="form-control">
+        <option *ngFor="let boatRiggerKey of boatRiggerKeys" [(value)]="boatRigger[boatRiggerKey]">{{ boatRigger[boatRiggerKey] }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="box-footer">
+    <button type="submit" (click)="saveChanges()" class="btn btn-primary">Speichern</button>
+    <button type="submit" class="btn btn-danger">Abbrechen</button>
+  </div>
+</div>

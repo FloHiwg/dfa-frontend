@@ -1,0 +1,62 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Bootsliste</h3>
+
+    <!-- <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div> -->
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <div class="table-responsive col-md-5">
+      <h4>Boote im Bootshaus</h4>
+      <table class="table no-margin">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let availableBoat of availableBoats" [class.selected]="availableBoat === selectedBoat" (click)="onSelect(availableBoat)">
+            <td>{{availableBoat.name}}</td>
+            <td>{{availableBoat.boatStatus}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.table-responsive -->
+
+    <div class="col-md-2">
+      <h4>Optionen</h4>
+      <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#checkOutDialog">Boot auschecken</button>
+      <button type="button" class="btn btn-warning btn-block">Boot einchecken</button>
+      <button type="button" class="btn btn-danger btn-block">Schaden melden</button>
+    </div>
+
+
+    <div class="table-responsive col-md-5">
+      <h4>Laufende Fahrten</h4>
+      <table class="table no-margin">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let inUseBoat of inUseBoats">
+            <td>{{inUseBoat.name}}</td>
+            <td>{{inUseBoat.boatStatus}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.table-responsive -->
+  </div>
+  <!-- /.box-body -->
+</div>
+
+<app-boat-checkout-dialog [boat]="selectedBoat"></app-boat-checkout-dialog>

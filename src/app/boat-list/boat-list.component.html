@@ -1,0 +1,42 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Bootsliste</h3>
+
+    <!-- <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div> -->
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <div class="table-responsive">
+      <table class="table no-margin">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Plätze</th>
+          <th>Typ</th>
+          <th>Steuermann</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let boat of boats">
+          <td>{{boat.name}}</td>
+          <td>{{boat.boatSlots}}</td>
+          <td>{{boat.boatType}}</td>
+          <td>{{boat.boatCox}}</td>
+          <td><a [routerLink]="['/boat-update', boat.id]"><i class="fa fa-gear"></i></a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.table-responsive -->
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer clearfix">
+    <button [routerLink]="['/boat-update', -1]" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add Boat</button>
+  </div>
+  <!-- /.box-footer -->
+</div>
