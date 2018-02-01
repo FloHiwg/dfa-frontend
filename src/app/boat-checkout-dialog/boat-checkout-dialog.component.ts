@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Boat, BoatCoxs } from '../_models/boat';
-import { Log } from '../_models/log';
+import { Log, RideType } from '../_models/log';
 import { Member } from '../_models/member';
 import { MemberService } from '../_services/member.service';
 
@@ -18,6 +18,11 @@ export class BoatCheckoutDialogComponent implements OnInit {
   members: Member[];
   selectedMembers: Member[] = [];
 
+  temp: String;
+
+  rideTypes = RideType;
+  rideTypesKeys = Object.keys(this.rideTypes);
+
   constructor(private memberService: MemberService) {
   }
 
@@ -32,8 +37,6 @@ export class BoatCheckoutDialogComponent implements OnInit {
 
   public onChange(memberId:number, position: number) {
     this.log.crew[position] = this.selectMember(memberId);
-    console.log(this.members);
-    console.log(this.selectedMembers);
   }
 
   selectMember(id:number): Member {
@@ -84,7 +87,8 @@ export class BoatCheckoutDialogComponent implements OnInit {
       boat: this.boat,
       crew: this.crew,
       cox: undefined,
-      distance: undefined
+      distance: undefined,
+      rideType: RideType.NORMAL_RIDE
     }
   }
 }

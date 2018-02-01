@@ -15,4 +15,5 @@ export class Log {
   crew: Member[];
   cox: number;
   distance: number;
+  rideType: RideType;
 }
