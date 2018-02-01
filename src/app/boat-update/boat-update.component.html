@@ -12,28 +12,30 @@
     <div class="form-group">
       <label>Bootstype</label>
       <select [(ngModel)]="boat.boatType" class="form-control">
-        <option *ngFor="let boatTypeKey of boatTypesKeys" [(value)]="boatTypes[boatTypeKey]">{{ boatTypes[boatTypeKey] }}</option>
+        <option *ngFor="let boatTypeKey of boatTypesKeys" [(ngValue)]="boatTypes[boatTypeKey]">{{ boatTypes[boatTypeKey] }}</option>
       </select>
     </div>
     <div class="form-group">
       <label>Bootsplätze</label>
       <select [(ngModel)]="boat.boatSlots" class="form-control">
-        <option *ngFor="let boatSlotsKey of boatSlotsKeys" [(value)]="boatSlots[boatSlotsKey]">{{ boatSlots[boatSlotsKey] }}</option>
+        <option *ngFor="let boatSlotsKey of boatSlotsKeys" [(ngValue)]="boatSlots[boatSlotsKey]">{{ boatSlots[boatSlotsKey].name }}</option>
       </select>
     </div>
     <div class="form-group">
       <label>Steuermann</label>
       <select [(ngModel)]="boat.boatCox" class="form-control">
-        <option *ngFor="let boatCoxKey of boatCoxKeys" [(value)]="boatCox[boatCoxKey]">{{ boatCox[boatCoxKey] }}</option>
+        <option *ngFor="let boatCoxsKey of boatCoxsKeys" [(ngValue)]="boatCoxs[boatCoxsKey]">{{ boatCoxs[boatCoxsKey].name }}</option>
       </select>
     </div>
     <div class="form-group">
       <label>Riggerung</label>
       <select [(ngModel)]="boat.boatRigger" class="form-control">
-        <option *ngFor="let boatRiggerKey of boatRiggerKeys" [(value)]="boatRigger[boatRiggerKey]">{{ boatRigger[boatRiggerKey] }}</option>
+        <option *ngFor="let boatRiggerKey of boatRiggerKeys" [(ngValue)]="boatRigger[boatRiggerKey]">{{ boatRigger[boatRiggerKey] }}</option>
       </select>
     </div>
   </div>
+
+  {{boat | json}}
 
   <div class="box-footer">
     <button type="submit" (click)="saveChanges()" class="btn btn-primary">Speichern</button>

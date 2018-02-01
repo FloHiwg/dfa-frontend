@@ -59,4 +59,4 @@
   <!-- /.box-body -->
 </div>
 
-<app-boat-checkout-dialog [boat]="selectedBoat"></app-boat-checkout-dialog>
+<app-boat-checkout-dialog *ngIf="selectedBoat" [boat]="selectedBoat"></app-boat-checkout-dialog>

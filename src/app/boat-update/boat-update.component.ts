@@ -4,7 +4,7 @@ import { User } from '../_models/user';
 import { ActivatedRoute } from '@angular/router';
 import { BoatService } from '../_services/boat.service';
 import { UserService } from '../_services/user.service';
-import { BoatType, BoatCox, BoatSlots, BoatRigger, BoatStatus } from '../_models/boat';
+import { BoatType, BoatCoxs, BoatSlots, BoatRigger, BoatStatus } from '../_models/boat';
 
 enum E { A, B }
 
@@ -18,7 +18,7 @@ export class BoatUpdateComponent implements OnInit {
   boat: Boat;
   private sub: any;
   title: String = "";
-  _user: User;
+  user: User;
 
   boatTypes = BoatType;
   boatTypesKeys = Object.keys(this.boatTypes);
@@ -26,8 +26,8 @@ export class BoatUpdateComponent implements OnInit {
   boatSlots = BoatSlots;
   boatSlotsKeys = Object.keys(this.boatSlots);
 
-  boatCox = BoatCox;
-  boatCoxKeys = Object.keys(this.boatCox);
+  boatCoxs = BoatCoxs;
+  boatCoxsKeys = Object.keys(this.boatCoxs);
 
   boatRigger = BoatRigger;
   boatRiggerKeys = Object.keys(this.boatRigger);
@@ -35,8 +35,8 @@ export class BoatUpdateComponent implements OnInit {
   constructor(private route: ActivatedRoute, private boatService: BoatService, private userService: UserService) {}
 
   ngOnInit() {
-    this._user = this.userService.getCurrentUser();
-    console.log(this._user);
+    this.user = this.userService.getCurrentUser();
+    console.log(this.user);
 
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
@@ -48,7 +48,7 @@ export class BoatUpdateComponent implements OnInit {
           id: -1,
           name: "",
           boatType: BoatType.RACE_BOAT,
-          boatCox: BoatCox.COXED,
+          boatCox: BoatCoxs.COXED,
           boatRigger: BoatRigger.SCULLING,
           boatSlots: BoatSlots.SINGLE,
           club: this.userService.getCurrentUser().club,

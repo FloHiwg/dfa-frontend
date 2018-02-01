@@ -1,4 +1,4 @@
-import { Boat, BoatCox, BoatType, BoatSlots, BoatRigger } from './boat';
+import { Boat, BoatCoxs, BoatType, BoatSlots, BoatRigger, BoatStatus } from './boat';
 import { Club } from './club';
 import { Member } from './member';
 import { Log } from './log';
@@ -33,18 +33,20 @@ export const BOATS: Boat[] = [
     id: 1,
     name: "Musen Sohn",
     club: CLUB,
-    boatCox: BoatCox.COXLESS,
+    boatCox: BoatCoxs.COXLESS,
     boatType: BoatType.RACE_BOAT,
     boatSlots: BoatSlots.SINGLE,
-    boatRigger: BoatRigger.SWEEP
+    boatRigger: BoatRigger.SWEEP,
+    boatStatus: BoatStatus.AVAILABLE
   },
   {
     id: 2,
     name: "Hängt Achtfach",
     club: CLUB,
-    boatCox: BoatCox.COXLESS,
+    boatCox: BoatCoxs.COXED,
     boatType: BoatType.RACE_BOAT,
-    boatSlots: BoatSlots.SINGLE,
-    boatRigger: BoatRigger.SWEEP
+    boatSlots: BoatSlots.DOUBLE,
+    boatRigger: BoatRigger.SWEEP,
+    boatStatus: BoatStatus.AVAILABLE
   }
 ]

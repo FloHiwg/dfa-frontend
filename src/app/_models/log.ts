@@ -14,5 +14,5 @@ export class Log {
   boat: Boat;
   crew: Member[];
   cox: number;
-
+  distance: number;
 }

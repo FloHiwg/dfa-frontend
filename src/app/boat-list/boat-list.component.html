@@ -24,9 +24,9 @@
         <tbody>
         <tr *ngFor="let boat of boats">
           <td>{{boat.name}}</td>
-          <td>{{boat.boatSlots}}</td>
+          <td>{{boat.boatSlots.name}}</td>
           <td>{{boat.boatType}}</td>
-          <td>{{boat.boatCox}}</td>
+          <td>{{boat.boatCox.name}}</td>
           <td><a [routerLink]="['/boat-update', boat.id]"><i class="fa fa-gear"></i></a></td>
         </tr>
         </tbody>

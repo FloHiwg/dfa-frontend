@@ -22,18 +22,27 @@ export enum BoatType {
   "Motorboot"*/
 }
 
-export enum BoatSlots {
-  SINGLE = "Einer",
-  DOUBLE = "Zweier",
-  /*"Doppelzweier",
-  "Dreier",*/
-  QUAD = "Vierer",
-  /*"Doppelvierer",
-  "Fünfer",
-  "Sechser",
-  "Doppelsechser",*/
-  OCTUPLE = "Achter",
-  //"Doppelachter"
+export class BoatSlot {
+  name: String;
+  personCount: number;
+}
+
+export const BoatSlots: { [key: string]: BoatSlot; } = { };
+BoatSlots.SINGLE = {
+  name: "Einer",
+  personCount: 1
+}
+BoatSlots.DOUBLE = {
+  name: "Zweier",
+  personCount: 2
+}
+BoatSlots.QUAD = {
+  name: "Vierer",
+  personCount: 4
+}
+BoatSlots.OCTUPLE = {
+  name: "Achter",
+  personCount: 8
 }
 
 export enum BoatRigger {
@@ -41,9 +50,18 @@ export enum BoatRigger {
   SCULLING = "Skull"
 }
 
-export enum BoatCox {
-  COXED = "mit Steuermann",
-  COXLESS = "ohne Steuermann"
+export class BoatCox {
+  name: String;
+  personCount: number;
+}
+export const BoatCoxs: { [key: string]: BoatCox; } = { };
+BoatCoxs.COXED = {
+  name: "mit Steuermann",
+  personCount: 1
+}
+BoatCoxs.COXLESS = {
+  name: "ohne Steuermann",
+  personCount: 0
 }
 
 export class Boat {
@@ -51,7 +69,7 @@ export class Boat {
   name: String;
   club: Club;
   boatType: BoatType;
-  boatSlots: BoatSlots;
+  boatSlots: BoatSlot;
   boatRigger: BoatRigger;
   boatCox: BoatCox;
   boatStatus: BoatStatus = BoatStatus.AVAILABLE;
