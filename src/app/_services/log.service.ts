@@ -46,6 +46,10 @@ export class LogService {
     return undefined;
   }
 
+  getLogs(): Log[] {
+    return this.logs;
+  }
+
   getRunningLogs(): Log[] {
     var runningLogs: Log[] = [];
     for(let log of this.logs) {

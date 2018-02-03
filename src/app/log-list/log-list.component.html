@@ -1,6 +1,6 @@
 <div class="box box-info">
   <div class="box-header with-border">
-    <h3 class="box-title">Bootsliste</h3>
+    <h3 class="box-title">Einträge</h3>
 
     <!-- <div class="box-tools pull-right">
       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -14,20 +14,18 @@
       <table class="table no-margin">
         <thead>
         <tr>
-          <th>Name</th>
-          <th>Plätze</th>
-          <th>Typ</th>
-          <th>Steuermann</th>
+          <th>Start</th>
+          <th>Ende</th>
+          <th>Boot</th>
           <th>Status</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let boat of boats">
-          <td>{{boat.name}}</td>
-          <td>{{boat.boatSlots.name}}</td>
-          <td>{{boat.boatType}}</td>
-          <td>{{boat.boatCox.name}}</td>
-          <td><a [routerLink]="['/boat-update', boat.id]"><i class="fa fa-gear"></i></a></td>
+        <tr *ngFor="let log of logs">
+          <td>{{log.startDate}}</td>
+          <td>{{log.endDate}}</td>
+          <td>{{log.boat.name}}</td>
+          <td>{{log.status.name}}</td>
         </tr>
         </tbody>
       </table>
@@ -35,8 +33,4 @@
     <!-- /.table-responsive -->
   </div>
   <!-- /.box-body -->
-  <div class="box-footer clearfix">
-    <button [routerLink]="['/boat-update', -1]" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Boot Hinzufügen</button>
-  </div>
-  <!-- /.box-footer -->
 </div>

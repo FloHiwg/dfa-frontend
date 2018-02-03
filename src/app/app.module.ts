@@ -20,12 +20,16 @@ import { SharedModuleModule } from './shared-module/shared-module.module';
 import { BoatCheckinComponent } from './boat-checkin/boat-checkin.component';
 import { BoatCheckoutDialogComponent } from './boat-checkout-dialog/boat-checkout-dialog.component';
 import { BoatCheckinDialogComponent } from './boat-checkin-dialog/boat-checkin-dialog.component';
+import { MemberListComponent } from './member-list/member-list.component';
+import { LogListComponent } from './log-list/log-list.component';
 
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
   { path: 'boat-list', component: BoatListComponent, data: { title: 'Bootsliste' } },
+  { path: 'member-list', component: MemberListComponent, data: { title: 'Mitgliederliste' } },
+  { path: 'log-list', component: LogListComponent, data: { title: 'Einträgerliste' } },
   { path: 'boat-update/:id', component: BoatUpdateComponent, data: { title: 'Boote Bearbeiten' } },
   { path: 'boat-checkout-dialog/:boatId', component: BoatCheckoutDialogComponent, data: { title: 'Fahrt Erstellen' } },
   { path: 'boat-checkin-dialog/:logId', component: BoatCheckinDialogComponent, data: { title: 'Fahrt Beenden' } },
@@ -43,6 +47,8 @@ const appRoutes: Routes = [
     BoatCheckinComponent,
     BoatCheckoutDialogComponent,
     BoatCheckinDialogComponent,
+    MemberListComponent,
+    LogListComponent,
   ],
   imports: [
     BrowserModule,
