@@ -16,10 +16,11 @@ RideStatuses.RUNNING = {
   name: "Laufend"
 };
 RideStatuses.FINISHED = {
-  name: "BEENDET"
+  name: "Beendet"
 };
 
 export class Log {
+  id: number;
   startDate: Date;
   endDate: Date;
   boat: Boat;

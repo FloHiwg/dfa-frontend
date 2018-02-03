@@ -6,6 +6,7 @@ import { Member } from '../_models/member';
 import { MemberService } from '../_services/member.service';
 import { BoatService } from '../_services/boat.service';
 import { LogService } from '../_services/log.service';
+import { Router } from '@angular/router';
 
 export class TempDate {
   hour = undefined;
@@ -36,7 +37,7 @@ export class BoatCheckoutDialogComponent implements OnInit {
   rideTypesKeys = Object.keys(this.rideTypes);
 
 
-  constructor(private route: ActivatedRoute, private memberService: MemberService, private boatService: BoatService, private logService: LogService) {
+  constructor(private route: ActivatedRoute, private memberService: MemberService, private boatService: BoatService, private logService: LogService, private router: Router) {
   }
 
   ngOnChanges(changes) {
@@ -46,7 +47,7 @@ export class BoatCheckoutDialogComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.boat = this.boatService.getBoat(+params['boatId']);
-      this.members = this.memberService.getMembers();
+      this.members = this.memberService.getMembers().slice();
       this.renderForm();
     });
   }
@@ -98,6 +99,7 @@ export class BoatCheckoutDialogComponent implements OnInit {
     }
 
     this.log = {
+      id: -1,
       startDate: new Date(),
       endDate: new Date(),
       boat: this.boat,
@@ -111,7 +113,7 @@ export class BoatCheckoutDialogComponent implements OnInit {
 
   saveLog(){
     this.log.startDate = new Date(this.tempStartDate.date + " " + this.tempStartDate.hour + ":" + this.tempStartDate.minute);
-    console.log(this.log);
-    this.logService.addLog(this.log);
+    this.logService.updateLog(this.log);
+    this.router.navigate(['/dashboard']);
   }
 }

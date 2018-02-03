@@ -53,6 +53,7 @@ export const BOATS: Boat[] = [
 
 export const LOGS: Log[] = [
   {
+    id: 1,
     boat: BOATS[0],
     cox: undefined,
     crew: [MEMBERS[0]],

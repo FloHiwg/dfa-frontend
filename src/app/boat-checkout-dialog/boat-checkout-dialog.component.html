@@ -67,7 +67,7 @@
       <div *ngIf="boat.boatCox === boatCoxs.COXED" class="form-group col-md-12">
         <label>Steuermann</label>
         <select class="form-control" [(ngModel)]="log.cox">
-          <option *ngFor="let member of selectedMembers" [(value)]="member.id">{{ member.firstname }} {{ member.lastname }}</option>
+          <option *ngFor="let member of selectedMembers" [(ngValue)]="member.id">{{ member.firstname }} {{ member.lastname }}</option>
         </select>
       </div>
     </div>
@@ -75,7 +75,7 @@
   <!-- /.box-body -->
   <div class="box-footer clearfix">
     <button (click)="saveLog();" type="button" class="btn btn-default">Speichern</button>
-    <button [routerLink]="['/home']" type="button" class="btn btn-danger">Abbrechen</button>
+    <button [routerLink]="['/dashboard']" type="button" class="btn btn-danger">Abbrechen</button>
   </div>
   <!-- /.box-footer -->
 </div>

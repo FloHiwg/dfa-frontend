@@ -14,6 +14,7 @@ import { BoatService } from './_services/boat.service';
 import { UserService } from './_services/user.service';
 import { MemberService } from './_services/member.service';
 import { LogService } from './_services/log.service';
+import { TitleService } from './_helper/title.service';
 import { BoatUpdateComponent } from './boat-update/boat-update.component';
 import { SharedModuleModule } from './shared-module/shared-module.module';
 import { BoatCheckinComponent } from './boat-checkin/boat-checkin.component';
@@ -22,11 +23,12 @@ import { BoatCheckinDialogComponent } from './boat-checkin-dialog/boat-checkin-d
 
 
 const appRoutes: Routes = [
-  { path: 'home', component: DashboardComponent },
-  { path: 'boat-list', component: BoatListComponent },
-  { path: 'boat-update/:id', component: BoatUpdateComponent },
-  { path: 'boat-checkout-dialog/:boatId', component: BoatCheckoutDialogComponent },
-  { path: 'boat-checkin-dialog/:logId', component: BoatCheckinDialogComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
+  { path: 'boat-list', component: BoatListComponent, data: { title: 'Bootsliste' } },
+  { path: 'boat-update/:id', component: BoatUpdateComponent, data: { title: 'Boote Bearbeiten' } },
+  { path: 'boat-checkout-dialog/:boatId', component: BoatCheckoutDialogComponent, data: { title: 'Fahrt Erstellen' } },
+  { path: 'boat-checkin-dialog/:logId', component: BoatCheckinDialogComponent, data: { title: 'Fahrt Beenden' } },
 ];
 
 @NgModule({
@@ -51,7 +53,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [BoatService, UserService, MemberService, LogService],
+  providers: [BoatService, UserService, MemberService, LogService, TitleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

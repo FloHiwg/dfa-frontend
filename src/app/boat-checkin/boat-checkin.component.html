@@ -31,9 +31,9 @@
 
     <div class="col-md-2">
       <h4>Optionen</h4>
-      <button *ngIf="selectedBoat" type="button" class="btn btn-info btn-block"  [routerLink]="['/boat-checkout-dialog', selectedBoat.id]">Boot auschecken</button>
+      <button *ngIf="selectedBoat" type="button" class="btn btn-info btn-block" [routerLink]="['/boat-checkout-dialog', selectedBoat.id]">Boot auschecken</button>
       <button *ngIf="!selectedBoat" type="button" disabled class="btn btn-info btn-block">Boot auschecken</button>
-      <button *ngIf="selectedLog" type="button" class="btn btn-warning btn-block">Boot einchecken</button>
+      <button *ngIf="selectedLog" type="button" class="btn btn-warning btn-block" [routerLink]="['/boat-checkin-dialog', selectedLog.id]">Boot einchecken</button>
       <button *ngIf="!selectedLog" type="button" disabled class="btn btn-warning btn-block">Boot einchecken</button>
       <button type="button" class="btn btn-danger btn-block">Schaden melden</button>
     </div>

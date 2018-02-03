@@ -14,4 +14,18 @@ export class MemberService {
     return this.members;
   }
 
+  getMember(memberId: number): Member {
+    console.log("memberId " + memberId);
+    var members = this.getMembers();
+    console.log(members);
+    for(let member of members) {
+      console.log("member - > ");
+      console.log(member);
+      if(member.id == memberId){
+        return member;
+      }
+    }
+    return undefined;
+  }
+
 }

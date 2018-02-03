@@ -64,9 +64,11 @@ export class BoatService {
     this.changeBoatStatus(boatId, BoatStatus.IN_USE);
   }
 
+  setBoatStatusToAvailable(boatId:number) {
+    this.changeBoatStatus(boatId, BoatStatus.AVAILABLE);
+  }
+
   changeBoatStatus(boatId:number, boatStatus: BoatStatus) {
     this.getBoat(boatId).boatStatus = boatStatus;
-    console.log(this.getBoats());
-    console.log(this.boats);
   }
 }
