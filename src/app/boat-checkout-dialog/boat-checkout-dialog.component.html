@@ -1,55 +1,81 @@
-<div *ngIf="boat">
-  <div class="form-group">
-    <label>Bootsname</label>
-    <h3>{{boat.name}}</h3>
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Neue Fahrt anlegen</h3>
+
+    <!-- <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div> -->
   </div>
-  <div class="form-group">
-    <div class="col-md-12">
-      <label>Fahrtbeginn</label>
-    </div>
-    <div class="col-md-6">
-      <input type="date" [(ngModel)]="temp" class="form-control"/>
-    </div>
-    {{temp}}
-    <div class="col-md-6">
-      <input type="text" class="form-control timepicker"/>
-    </div>
-  </div>
-  <div class="form-group col-md-12">
-    <label>Fahrttyp</label>
-    <select [(ngModel)]="log.rideType" class="form-control">
-      <option *ngFor="let rideTypesKey of rideTypesKeys" [(ngValue)]="rideTypes[rideTypesKey]">{{ rideTypes[rideTypesKey] }}</option>
-    </select>
-  </div>
-  <div class="form-group col-md-12">
-    <label>Mannschaft</label>
-    <div *ngFor="let crewmen of log.crew;  let i = index" class="form-group">
-      <div class="col-sm-6">
-        <div *ngIf="crewmen.firstname!==undefined" class="input-group">
-          <div class="input-group-addon">
-            1
-          </div>
-          <input class="form-control" [(value)]="crewmen.firstname + ' ' + crewmen.lastname" disabled />
-          <div class="input-group-addon">
-            <a (click)="removeSelection(i);"><i class="fa fa-times"></i></a>
-          </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <div *ngIf="boat">
+      <div class="form-group">
+        <label>Bootsname</label>
+        <h3>{{boat.name}}</h3>
+      </div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <label>Fahrtbeginn</label>
         </div>
-        <div class="input-group" *ngIf="crewmen.firstname==undefined">
-          <div class="input-group-addon">
-            {{ i + 1 }}
-          </div>
-          <select class="form-control" (change)="onChange($event.target.value, i);">
-            <option value="?" selected="selected"></option>
-            <option *ngFor="let member of members" [(value)]="member.id">{{ member.firstname }} {{ member.lastname }}</option>
+        <div class="col-md-4">
+          <input type="date" [(ngModel)]="tempStartDate.date" class="form-control"/>
+        </div>
+        <div class="col-md-1">
+          <select [(ngModel)]="tempStartDate.hour" class="form-control">
+            <option *ngFor="let h of HOURS" [ngValue]="h">{{ h }}</option>
+          </select>
+        </div>
+        <div class="col-md-1">
+          <select [(ngModel)]="tempStartDate.minute" class="form-control">
+            <option *ngFor="let m of MINUTES" [ngValue]="m">{{ m }}</option>
           </select>
         </div>
       </div>
+      <div class="form-group col-md-12">
+        <label>Fahrttyp</label>
+        <select [(ngModel)]="log.rideType" class="form-control">
+          <option *ngFor="let rideTypesKey of rideTypesKeys" [(ngValue)]="rideTypes[rideTypesKey]">{{ rideTypes[rideTypesKey] }}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-12">
+        <label>Mannschaft</label>
+        <div *ngFor="let crewmen of log.crew;  let i = index" class="form-group">
+          <div class="col-sm-6">
+            <div *ngIf="crewmen.firstname!==undefined" class="input-group">
+              <div class="input-group-addon">
+                {{ i + 1 }}
+              </div>
+              <input class="form-control" [(value)]="crewmen.firstname + ' ' + crewmen.lastname" disabled />
+              <div class="input-group-addon">
+                <a (click)="removeSelection(i);"><i class="fa fa-times"></i></a>
+              </div>
+            </div>
+            <div class="input-group" *ngIf="crewmen.firstname==undefined">
+              <div class="input-group-addon">
+                {{ i + 1 }}
+              </div>
+              <select class="form-control" (change)="onChange($event.target.value, i);">
+                <option value="?" selected="selected"></option>
+                <option *ngFor="let member of members" [(value)]="member.id">{{ member.firstname }} {{ member.lastname }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="boat.boatCox === boatCoxs.COXED" class="form-group col-md-12">
+        <label>Steuermann</label>
+        <select class="form-control" [(ngModel)]="log.cox">
+          <option *ngFor="let member of selectedMembers" [(value)]="member.id">{{ member.firstname }} {{ member.lastname }}</option>
+        </select>
+      </div>
     </div>
   </div>
-  <div *ngIf="boat.boatCox === boatCoxs.COXED" class="form-group col-md-12">
-    <label>Steuermann</label>
-    <select class="form-control" [(ngModel)]="log.cox">
-      <option *ngFor="let member of selectedMembers" [(value)]="member.id">{{ member.firstname }} {{ member.lastname }}</option>
-    </select>
+  <!-- /.box-body -->
+  <div class="box-footer clearfix">
+    <button (click)="saveLog();" type="button" class="btn btn-default">Speichern</button>
+    <button [routerLink]="['/home']" type="button" class="btn btn-danger">Abbrechen</button>
   </div>
+  <!-- /.box-footer -->
 </div>

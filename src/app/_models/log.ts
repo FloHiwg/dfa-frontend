@@ -8,6 +8,17 @@ export enum RideType {
   BOAT_RACE = "Regatta"
 }
 
+export class RideStatus {
+  name: String;
+}
+export const RideStatuses: { [key: string]: RideStatus; } = { };
+RideStatuses.RUNNING = {
+  name: "Laufend"
+};
+RideStatuses.FINISHED = {
+  name: "BEENDET"
+};
+
 export class Log {
   startDate: Date;
   endDate: Date;
@@ -16,4 +27,5 @@ export class Log {
   cox: number;
   distance: number;
   rideType: RideType;
+  status: RideStatus;
 }

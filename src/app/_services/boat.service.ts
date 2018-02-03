@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Boat } from '../_models/boat';
+import { Boat, BoatStatus } from '../_models/boat';
 import { Club } from '../_models/club';
 import { BOATS } from '../_models/mock_models';
 
@@ -13,8 +13,17 @@ export class BoatService {
   }
 
   getBoats(): Boat[] {
-    console.log(this.boats);
     return this.boats;
+  }
+
+  getAvailableBoats(): Boat[] {
+    var availableBoats: Boat[] = [];
+    for(let boat of this.boats){
+      if(boat.boatStatus == BoatStatus.AVAILABLE) {
+        availableBoats.push(boat);
+      }
+    }
+    return availableBoats;
   }
 
   getBoat(id:number): Boat {
@@ -29,14 +38,10 @@ export class BoatService {
   updateBoat(boat: Boat) {
     if(boat.id == -1) {
       //new boat
-      console.log("new Boat");
       boat.id = this.boats.length + 1;
       this.boats.push(boat);
-      console.log("new boat list");
-      console.log(this.boats);
     } else {
       //update boat
-      console.log("update Boat with id " + boat.id);
       let targetIndex: number = -1;
       for (const {item, index} of this.boats.map((item, index) => ({ item, index }))) {
         if(item.id == boat.id) {
@@ -52,8 +57,16 @@ export class BoatService {
         boat.id = -1;
         this.updateBoat(boat);
       }
-      console.log("new boat list");
-      console.log(this.boats);
     }
+  }
+
+  setBoatStatusToInUse(boatId:number) {
+    this.changeBoatStatus(boatId, BoatStatus.IN_USE);
+  }
+
+  changeBoatStatus(boatId:number, boatStatus: BoatStatus) {
+    this.getBoat(boatId).boatStatus = boatStatus;
+    console.log(this.getBoats());
+    console.log(this.boats);
   }
 }

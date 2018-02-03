@@ -1,7 +1,7 @@
 import { Boat, BoatCoxs, BoatType, BoatSlots, BoatRigger, BoatStatus } from './boat';
 import { Club } from './club';
 import { Member } from './member';
-import { Log } from './log';
+import { Log, RideType, RideStatuses } from './log';
 
 
 export const CLUB: Club = {
@@ -37,7 +37,7 @@ export const BOATS: Boat[] = [
     boatType: BoatType.RACE_BOAT,
     boatSlots: BoatSlots.SINGLE,
     boatRigger: BoatRigger.SWEEP,
-    boatStatus: BoatStatus.AVAILABLE
+    boatStatus: BoatStatus.IN_USE
   },
   {
     id: 2,
@@ -48,5 +48,18 @@ export const BOATS: Boat[] = [
     boatSlots: BoatSlots.DOUBLE,
     boatRigger: BoatRigger.SWEEP,
     boatStatus: BoatStatus.AVAILABLE
+  }
+]
+
+export const LOGS: Log[] = [
+  {
+    boat: BOATS[0],
+    cox: undefined,
+    crew: [MEMBERS[0]],
+    distance: undefined,
+    endDate: undefined,
+    rideType: RideType.NORMAL_RIDE,
+    startDate: new Date("Sat Feb 03 2018 18:40:00 GMT+0100"),
+    status: RideStatuses.RUNNING
   }
 ]

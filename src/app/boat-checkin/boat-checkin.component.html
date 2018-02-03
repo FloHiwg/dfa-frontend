@@ -20,7 +20,7 @@
         </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let availableBoat of availableBoats" [class.selected]="availableBoat === selectedBoat" (click)="onSelect(availableBoat)">
+          <tr *ngFor="let availableBoat of availableBoats" [class.selected]="availableBoat === selectedBoat" (click)="onSelectBoat(availableBoat)">
             <td>{{availableBoat.name}}</td>
             <td>{{availableBoat.boatStatus}}</td>
           </tr>
@@ -31,8 +31,10 @@
 
     <div class="col-md-2">
       <h4>Optionen</h4>
-      <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#checkOutDialog">Boot auschecken</button>
-      <button type="button" class="btn btn-warning btn-block">Boot einchecken</button>
+      <button *ngIf="selectedBoat" type="button" class="btn btn-info btn-block"  [routerLink]="['/boat-checkout-dialog', selectedBoat.id]">Boot auschecken</button>
+      <button *ngIf="!selectedBoat" type="button" disabled class="btn btn-info btn-block">Boot auschecken</button>
+      <button *ngIf="selectedLog" type="button" class="btn btn-warning btn-block">Boot einchecken</button>
+      <button *ngIf="!selectedLog" type="button" disabled class="btn btn-warning btn-block">Boot einchecken</button>
       <button type="button" class="btn btn-danger btn-block">Schaden melden</button>
     </div>
 
@@ -47,9 +49,9 @@
         </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let inUseBoat of inUseBoats">
-            <td>{{inUseBoat.name}}</td>
-            <td>{{inUseBoat.boatStatus}}</td>
+          <tr *ngFor="let runningLog of runningLogs" [class.selected]="runningLog === selectedLog" (click)="onSelectLog(runningLog)">
+            <td>{{runningLog.boat.name}}</td>
+            <td>{{runningLog.status.name}}</td>
           </tr>
         </tbody>
       </table>
@@ -58,5 +60,3 @@
   </div>
   <!-- /.box-body -->
 </div>
-
-<app-boat-checkout-dialog *ngIf="selectedBoat" [boat]="selectedBoat"></app-boat-checkout-dialog>

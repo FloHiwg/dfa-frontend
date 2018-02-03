@@ -1,8 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Boat, BoatCoxs } from '../_models/boat';
-import { Log, RideType } from '../_models/log';
+import { Log, RideType, RideStatuses } from '../_models/log';
 import { Member } from '../_models/member';
 import { MemberService } from '../_services/member.service';
+import { BoatService } from '../_services/boat.service';
+import { LogService } from '../_services/log.service';
+
+export class TempDate {
+  hour = undefined;
+  minute = undefined;
+  date = undefined;
+}
 
 @Component({
   selector: 'app-boat-checkout-dialog',
@@ -10,20 +19,24 @@ import { MemberService } from '../_services/member.service';
   styleUrls: ['./boat-checkout-dialog.component.css']
 })
 export class BoatCheckoutDialogComponent implements OnInit {
-  @Input() boat: Boat;
+  boat: Boat;
   boatCoxs = BoatCoxs;
   personCount: number;
   crew: Member[] = [];
   log: Log;
   members: Member[];
   selectedMembers: Member[] = [];
+  sub: any;
+  HOURS: String[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "29", "20", "21", "22", "23"];
+  MINUTES: String[] = ["0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"];
 
-  temp: String;
+  tempStartDate: TempDate = new TempDate();
 
   rideTypes = RideType;
   rideTypesKeys = Object.keys(this.rideTypes);
 
-  constructor(private memberService: MemberService) {
+
+  constructor(private route: ActivatedRoute, private memberService: MemberService, private boatService: BoatService, private logService: LogService) {
   }
 
   ngOnChanges(changes) {
@@ -31,8 +44,11 @@ export class BoatCheckoutDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.members = this.memberService.getMembers();
-    this.renderForm();
+    this.sub = this.route.params.subscribe(params => {
+      this.boat = this.boatService.getBoat(+params['boatId']);
+      this.members = this.memberService.getMembers();
+      this.renderForm();
+    });
   }
 
   public onChange(memberId:number, position: number) {
@@ -88,7 +104,14 @@ export class BoatCheckoutDialogComponent implements OnInit {
       crew: this.crew,
       cox: undefined,
       distance: undefined,
-      rideType: RideType.NORMAL_RIDE
+      rideType: RideType.NORMAL_RIDE,
+      status: RideStatuses.RUNNING
     }
+  }
+
+  saveLog(){
+    this.log.startDate = new Date(this.tempStartDate.date + " " + this.tempStartDate.hour + ":" + this.tempStartDate.minute);
+    console.log(this.log);
+    this.logService.addLog(this.log);
   }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BoatService } from '../_services/boat.service';
 import { Boat, BoatStatus } from '../_models/boat';
+import { Log } from '../_models/log';
+import { LogService } from '../_services/log.service';
 
 @Component({
   selector: 'app-boat-checkin',
@@ -9,28 +11,24 @@ import { Boat, BoatStatus } from '../_models/boat';
 })
 export class BoatCheckinComponent implements OnInit {
   availableBoats: Boat[] = [];
-  inUseBoats: Boat[] = [];
-  outOfOrderBoats: Boat[] = [];
   boats: Boat[];
   selectedBoat: Boat;
+  selectedLog: Log;
+  runningLogs: Log[];
 
-  constructor(private boatService: BoatService) { }
+  constructor(private boatService: BoatService, private logService: LogService) { }
 
   ngOnInit() {
-    this.boats = this.boatService.getBoats();
-    for(let boat of this.boats) {
-      if(boat.boatStatus = BoatStatus.AVAILABLE) {
-        this.availableBoats.push(boat);
-      } else if(boat.boatStatus = BoatStatus.IN_USE) {
-        this.inUseBoats.push(boat);
-      } else {
-        this.outOfOrderBoats.push(boat);
-      }
-    }
+    this.availableBoats = this.boatService.getAvailableBoats();
+    this.runningLogs = this.logService.getRunningLogs();
   }
 
-  onSelect(boat:Boat) {
+  onSelectBoat(boat:Boat) {
     this.selectedBoat = boat;
+  }
+
+  onSelectLog(log:Log) {
+    this.selectedLog = log;
   }
 
   checkOutBoat() {

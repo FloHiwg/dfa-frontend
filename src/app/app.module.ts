@@ -13,16 +13,20 @@ import { BoatListComponent } from './boat-list/boat-list.component';
 import { BoatService } from './_services/boat.service';
 import { UserService } from './_services/user.service';
 import { MemberService } from './_services/member.service';
+import { LogService } from './_services/log.service';
 import { BoatUpdateComponent } from './boat-update/boat-update.component';
 import { SharedModuleModule } from './shared-module/shared-module.module';
 import { BoatCheckinComponent } from './boat-checkin/boat-checkin.component';
 import { BoatCheckoutDialogComponent } from './boat-checkout-dialog/boat-checkout-dialog.component';
+import { BoatCheckinDialogComponent } from './boat-checkin-dialog/boat-checkin-dialog.component';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: DashboardComponent },
   { path: 'boat-list', component: BoatListComponent },
   { path: 'boat-update/:id', component: BoatUpdateComponent },
+  { path: 'boat-checkout-dialog/:boatId', component: BoatCheckoutDialogComponent },
+  { path: 'boat-checkin-dialog/:logId', component: BoatCheckinDialogComponent },
 ];
 
 @NgModule({
@@ -36,6 +40,7 @@ const appRoutes: Routes = [
     BoatUpdateComponent,
     BoatCheckinComponent,
     BoatCheckoutDialogComponent,
+    BoatCheckinDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [BoatService, UserService, MemberService],
+  providers: [BoatService, UserService, MemberService, LogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

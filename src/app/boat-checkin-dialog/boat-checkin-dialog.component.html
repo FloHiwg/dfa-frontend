@@ -1,0 +1,93 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Fahrt beenden</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <label>Bootsname</label>
+        </div>
+        <div class="col-md-12">
+          <h5>{{ log.boat.name }}</h5>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <label>Fahrtbeginn</label>
+        </div>
+        <div class="col-md-12">
+          <h5>{{ log.startDate }}</h5>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <label>Fahrttyp</label>
+        </div>
+        <div class="col-md-12">
+          <h5>{{ log.rideType }}</h5>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <label>Mannschaft</label>
+        </div>
+        <div *ngFor="let crewman of log.crew;  let i = index" class="form-group">
+          <div class="col-sm-6">
+            <div class="input-group">
+              <div class="input-group-addon">
+                {{ i + 1 }}
+              </div>
+              <input class="form-control" [(value)]="crewman.firstname + ' ' + crewman.lastname" disabled />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="log.cox !== undefined" class="form-group">
+        <div class="col-md-12">
+          <label>Steuermann</label>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input class="form-control" [value]="crew[log.cox].firstname + ' ' + crew[log.cox].lastname" disabled />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <label>Fahrtende</label>
+        </div>
+        <div class="col-md-4">
+          <input type="date" [(ngModel)]="tempEndDate.date" class="form-control"/>
+        </div>
+        <div class="col-md-1">
+          <select [(ngModel)]="tempEndDate.hour" class="form-control">
+            <option *ngFor="let h of HOURS" [ngValue]="h">{{ h }}</option>
+          </select>
+        </div>
+        <div class="col-md-1">
+          <select [(ngModel)]="tempEndDate.minute" class="form-control">
+            <option *ngFor="let m of MINUTES" [ngValue]="m">{{ m }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <label>Distanz</label>
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" type="number" [(ngModel)]="log.distance" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer clearfix">
+    <button (click)="saveLog();" type="button" class="btn btn-default">Speichern</button>
+    <button [routerLink]="['/home']" type="button" class="btn btn-danger">Abbrechen</button>
+  </div>
+  <!-- /.box-footer -->
+</div>
