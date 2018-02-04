@@ -9,7 +9,7 @@ export enum RideType {
 }
 
 export class RideStatus {
-  name: String;
+  name: string;
 }
 export const RideStatuses: { [key: string]: RideStatus; } = { };
 RideStatuses.RUNNING = {

@@ -13,9 +13,9 @@ MemberStatuses.UNAVAILABLE = {
 
 export class Member {
   id: number;
-  firstname: String;
-  lastname: String;
+  firstname: string;
+  lastname: string;
   club: Club;
-  sex: String;
+  sex: string;
   birthday: Date;
 }

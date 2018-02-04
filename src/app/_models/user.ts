@@ -2,8 +2,8 @@ import { Club } from '../_models/club'
 
 export class User {
   id: number;
-  group: String;
-  name: String;
-  email: String;
+  group: string;
+  name: string;
+  email: string;
   club: Club;
 }

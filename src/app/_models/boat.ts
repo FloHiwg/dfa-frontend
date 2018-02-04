@@ -23,7 +23,7 @@ export enum BoatType {
 }
 
 export class BoatSlot {
-  name: String;
+  name: string;
   personCount: number;
 }
 
@@ -51,7 +51,7 @@ export enum BoatRigger {
 }
 
 export class BoatCox {
-  name: String;
+  name: string;
   personCount: number;
 }
 export const BoatCoxs: { [key: string]: BoatCox; } = { };

@@ -22,8 +22,8 @@ export class BoatCheckinDialogComponent implements OnInit {
   sub: any;
   log: Log = undefined;
   cox: Member;
-  HOURS: String[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "29", "20", "21", "22", "23"];
-  MINUTES: String[] = ["0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"];
+  HOURS: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "29", "20", "21", "22", "23"];
+  MINUTES: string[] = ["0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"];
 
   tempEndDate: TempDate = new TempDate();
 
@@ -34,11 +34,7 @@ export class BoatCheckinDialogComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       var members = this.memberService.getMembers();
       this.log = this.logService.getLog(+params['logId']);
-      console.log("coxId");
-      console.log(this.log.cox);
-      console.log(members);
       this.cox = this.memberService.getMember(this.log.cox);
-      console.log(this.cox);
     });
 
   }

@@ -17,7 +17,7 @@ export class BoatUpdateComponent implements OnInit {
   id: number;
   boat: Boat;
   private sub: any;
-  title: String = "";
+  title: string = "";
   user: User;
 
   boatTypes = BoatType;
@@ -36,7 +36,6 @@ export class BoatUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userService.getCurrentUser();
-    console.log(this.user);
 
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
@@ -64,7 +63,6 @@ export class BoatUpdateComponent implements OnInit {
   }
 
   saveChanges() {
-    console.log("saveChanges() got triggered");
     this.boatService.updateBoat(this.boat);
   }
 }

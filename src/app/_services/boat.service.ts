@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { Boat, BoatStatus } from '../_models/boat';
 import { Club } from '../_models/club';
 import { BOATS } from '../_models/mock_models';
+import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class BoatService {
+  private serverEndpoint: string;
 
   boats: Boat[];
 
