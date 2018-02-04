@@ -1,5 +1,6 @@
-import {Boat} from "./boat";
-import {Member} from "./member";
+import { Boat } from "./boat";
+import { Member } from "./member";
+import { Club } from "./club";
 
 export enum RideType {
   NORMAL_RIDE = "Normale Fahrt",
@@ -21,6 +22,7 @@ RideStatuses.FINISHED = {
 
 export class Log {
   id: number;
+  club: Club;
   startDate: Date;
   endDate: Date;
   boat: Boat;

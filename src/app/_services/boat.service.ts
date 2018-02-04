@@ -4,14 +4,15 @@ import { Club } from '../_models/club';
 import { BOATS } from '../_models/mock_models';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class BoatService {
-  private serverEndpoint: string;
+  private boatServerEndpoint: string = "";
 
   boats: Boat[];
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.boats = BOATS;
   }
 
@@ -36,6 +37,15 @@ export class BoatService {
       }
     }
     return undefined;
+    /*
+
+    return this.http
+      .get(this.boatServerEndpoint)
+      .pipe(
+        catchError(this.handleError)
+      );
+
+    */
   }
 
   updateBoat(boat: Boat) {
@@ -73,5 +83,10 @@ export class BoatService {
 
   changeBoatStatus(boatId:number, boatStatus: BoatStatus) {
     this.getBoat(boatId).boatStatus = boatStatus;
+  }
+
+  private handleError(err: HttpErrorResponse | any) {
+    console.error('An error occurred', err);
+    return Observable.throw(err.message || err);
   }
 }

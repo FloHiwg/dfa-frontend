@@ -7,6 +7,7 @@ import { MemberService } from '../_services/member.service';
 import { BoatService } from '../_services/boat.service';
 import { LogService } from '../_services/log.service';
 import { Router } from '@angular/router';
+import { UserService } from '../_services/user.service';
 
 export class TempDate {
   hour = undefined;
@@ -37,7 +38,7 @@ export class BoatCheckoutDialogComponent implements OnInit {
   rideTypesKeys = Object.keys(this.rideTypes);
 
 
-  constructor(private route: ActivatedRoute, private memberService: MemberService, private boatService: BoatService, private logService: LogService, private router: Router) {
+  constructor(private route: ActivatedRoute, private memberService: MemberService, private boatService: BoatService, private logService: LogService, private router: Router, private userService: UserService) {
   }
 
   ngOnChanges(changes) {
@@ -101,6 +102,7 @@ export class BoatCheckoutDialogComponent implements OnInit {
     this.log = {
       id: -1,
       startDate: new Date(),
+      club: this.userService.getCurrentUser().club,
       endDate: new Date(),
       boat: this.boat,
       crew: this.crew,

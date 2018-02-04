@@ -55,6 +55,7 @@ export const LOGS: Log[] = [
   {
     id: 1,
     boat: BOATS[0],
+    club: CLUB,
     cox: undefined,
     crew: [MEMBERS[0]],
     distance: undefined,
